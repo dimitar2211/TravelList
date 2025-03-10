@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Travel List!</h1>
+    <p>
+        <button id="helloButton" class="btn btn-primary">Hello</button>
+    </p>
+
+    <div id="description" style="display:none; padding-top: 20px;">
+        <p>
+            <strong>Planning your vacation:</strong> With this website, you can allocate your vacation budget by creating a list of destinations and calculating how much your stay will cost.
+        </p>
+        <p>
+            <strong>How to spend money on vacation:</strong> Vacation is not only a well-deserved break from daily life but also an opportunity to recharge and get inspired. Spend your money wisely by considering costs for transportation, accommodation, and food.
+        </p>
+        <p>
+            Planning your vacation budget is a great way to feel confident and prepared for your adventure!
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById("helloButton").addEventListener("click", function () {
+            var description = document.getElementById("description");
+
+            if (description.style.display === "none" || description.style.display === "") {
+                description.style.display = "block";
+                description.style.opacity = 0; 
+                var fadeEffect = setInterval(function () {
+                    if (!description.style.opacity) {
+                        description.style.opacity = 0;
+                    }
+                    if (description.style.opacity < 1) {
+                        description.style.opacity = parseFloat(description.style.opacity) + 0.1;
+                    } else {
+                        clearInterval(fadeEffect);
+                    }
+                }, 50);
+            } else {
+                var fadeEffect = setInterval(function () {
+                    if (description.style.opacity > 0) {
+                        description.style.opacity = parseFloat(description.style.opacity) - 0.1;
+                    } else {
+                        description.style.display = "none";
+                        clearInterval(fadeEffect);
+                    }
+                }, 50);
+            }
+        });
+    </script>
+}

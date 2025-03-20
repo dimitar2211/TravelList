@@ -2,13 +2,22 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Travel List!</h1>
-    <p>
-        <button id="helloButton" class="btn btn-primary">Hello</button>
+<div class="container text-center" style="background-color: #f0f8ff; padding: 50px 0;">
+    <!-- Заглавие -->
+    <h1 class="display-4" style="color: #333;">Welcome to Travel List!</h1>
+
+    <!-- Логото, което е икона, с добавен зелен цвят, поставено под заглавието -->
+    <i class="fa fa-plane-departure fa-5x" style="color: #28a745; margin-top: 30px;"></i>
+
+    <!-- Бутон с допълнително отстояние -->
+    <p style="margin-top: 50px;">
+        <button id="helloButton" class="btn btn-lg btn-success shadow-lg rounded-pill">
+            <i class="fas fa-hand-pointer"></i> Learn More
+        </button>
     </p>
 
-    <div id="description" style="display:none; padding-top: 20px;">
+    <!-- Описание с ефект на показване и анимации -->
+    <div id="description" class="mt-4" style="display:none; padding-top: 20px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 30px;">
         <p>
             <strong>Planning your vacation:</strong> With this website, you can allocate your vacation budget by creating a list of destinations and calculating how much your stay will cost.
         </p>
@@ -19,36 +28,220 @@
             Planning your vacation budget is a great way to feel confident and prepared for your adventure!
         </p>
     </div>
+
+    <!-- Ново допълнително съдържание с карти на популярни дестинации -->
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/08/07/08/paris.jpg" class="card-img-top" alt="Destination 1">
+                <div class="card-body">
+                    <h5 class="card-title">Paris</h5>
+                    <p class="card-text">Explore the romantic city of lights, from the Eiffel Tower to its famous museums.</p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#parisModal">Explore</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://th.bing.com/th/id/OIP.N4erimj-adrWRKtDpDu0SgHaE8?rs=1&pid=ImgDetMain" class="card-img-top" alt="Destination 2">
+                <div class="card-body">
+                    <h5 class="card-title">Tokyo</h5>
+                    <p class="card-text">Experience the blend of tradition and modernity in the bustling city of Tokyo.</p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tokyoModal">Explore</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://th.bing.com/th/id/R.ce6a28b33ba0c220c0fe57ce0a04b01a?rik=1E9GvAoWX2SxQA&pid=ImgRaw&r=0" class="card-img-top" alt="Destination 3">
+                <div class="card-body">
+                    <h5 class="card-title">New York</h5>
+                    <p class="card-text">Visit the iconic landmarks like Times Square and Central Park in New York City.</p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newYorkModal">Explore</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Нови дестинации с разстояние -->
+    <div class="row mt-4">
+        <!-- Добавен mt-4 клас за разстояние -->
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://static.vecteezy.com/system/resources/previews/033/863/522/large_2x/great-wall-of-china-at-sunrise-panoramic-view-of-china-the-great-wall-of-china-in-the-mist-lying-long-surrealist-view-from-dronegraphy-8k-ai-generated-free-photo.jpg" class="card-img-top" alt="Destination 4">
+                <div class="card-body">
+                    <h5 class="card-title">Great Wall of China</h5>
+                    <p class="card-text">Walk along the historic Great Wall and enjoy breathtaking views of China’s countryside.</p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chinaModal">Explore</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://th.bing.com/th/id/OIP.IsWHPWuaS20krWzCs9_XGAHaE7?rs=1&pid=ImgDetMain" class="card-img-top" alt="Destination 5">
+                <div class="card-body">
+                    <h5 class="card-title">Sydney</h5>
+                    <p class="card-text">Visit the iconic Sydney Opera House and enjoy the harbor views.</p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sydneyModal">Explore</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://lp-cms-production.imgix.net/features/2018/01/Machu_Picchu-694dbac6b0e5.jpg?auto=format&fit=crop&sharp=10&vib=20&ixlib=react-8.6.4&w=850&q=35&dpr=3" class="card-img-top" alt="Destination 6">
+                <div class="card-body">
+                    <h5 class="card-title">Machu Picchu</h5>
+                    <p class="card-text">Explore the ancient Inca city in the Andes mountains, a UNESCO World Heritage site.</p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#machuPicchuModal">Explore</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Париж Модал -->
+    <div class="modal fade" id="parisModal" tabindex="-1" aria-labelledby="parisModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="parisModalLabel">Paris - City of Lights</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Discover the magic of Paris, from the Eiffel Tower to its beautiful museums and art galleries. Paris is the perfect destination for art lovers, food enthusiasts, and those seeking romance!</p>
+                    <p>Don't forget to visit the Louvre, walk along the Seine, and enjoy some amazing French cuisine at one of the many bistros!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Токио Модал -->
+    <div class="modal fade" id="tokyoModal" tabindex="-1" aria-labelledby="tokyoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tokyoModalLabel">Tokyo - A Blend of Tradition and Modernity</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Explore Tokyo, where ancient temples meet modern skyscrapers. From the serene Senso-ji Temple to the bustling Shibuya crossing, Tokyo offers an unforgettable experience.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ню Йорк Модал -->
+    <div class="modal fade" id="newYorkModal" tabindex="-1" aria-labelledby="newYorkModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newYorkModalLabel">New York - The Big Apple</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Visit the iconic landmarks like Times Square, the Statue of Liberty, and Central Park in New York City. Whether you're into art, shopping, or theater, NYC has something for everyone!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Китай Модал -->
+    <div class="modal fade" id="chinaModal" tabindex="-1" aria-labelledby="chinaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="chinaModalLabel">Great Wall of China</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Walk along the historic Great Wall of China, one of the Seven Wonders of the World. Marvel at the stunning views and explore the rich cultural history of China.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Сидни Модал -->
+    <div class="modal fade" id="sydneyModal" tabindex="-1" aria-labelledby="sydneyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="sydneyModalLabel">Sydney - Opera House</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Experience Sydney's famous Opera House and enjoy the stunning views of Sydney Harbour. The city is known for its iconic landmarks and beautiful beaches.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Мачу Пикчу Модал -->
+    <div class="modal fade" id="machuPicchuModal" tabindex="-1" aria-labelledby="machuPicchuModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="machuPicchuModalLabel">Machu Picchu - Inca Civilization</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Explore the ancient Inca city of Machu Picchu in the Andes. A stunning archaeological site that offers breathtaking views and a deep dive into the history of the Inca civilization.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-5 text-center">
+    <div class="col-md-12">
+        <h3>Our Partners</h3>
+        <p>We work with trusted travel agencies and partners to ensure the best experience for your vacation.</p>
+    </div>
 </div>
 
-@section Scripts {
-    <script>
-        document.getElementById("helloButton").addEventListener("click", function () {
-            var description = document.getElementById("description");
 
-            if (description.style.display === "none" || description.style.display === "") {
-                description.style.display = "block";
-                description.style.opacity = 0; 
-                var fadeEffect = setInterval(function () {
-                    if (!description.style.opacity) {
-                        description.style.opacity = 0;
-                    }
-                    if (description.style.opacity < 1) {
-                        description.style.opacity = parseFloat(description.style.opacity) + 0.1;
-                    } else {
-                        clearInterval(fadeEffect);
-                    }
-                }, 50);
-            } else {
-                var fadeEffect = setInterval(function () {
-                    if (description.style.opacity > 0) {
-                        description.style.opacity = parseFloat(description.style.opacity) - 0.1;
-                    } else {
-                        description.style.display = "none";
-                        clearInterval(fadeEffect);
-                    }
-                }, 50);
-            }
-        });
-    </script>
-}
+<script>
+    // Добавяне на функционалност за бутона "Learn More"
+    document.getElementById('helloButton').addEventListener('click', function() {
+        var description = document.getElementById('description');
+        if (description.style.display === 'none') {
+            description.style.display = 'block';
+            description.style.opacity = 0; // Начална непрозрачност
+            var opacity = 0;
+            var fadeInInterval = setInterval(function() {
+                if (opacity < 1) {
+                    opacity += 0.05; // Увеличава непрозрачността постепенно
+                    description.style.opacity = opacity;
+                } else {
+                    clearInterval(fadeInInterval);
+                }
+            }, 50); // Всеки 50 милисекунди увеличаваме стойността на opacity
+        } else {
+            var fadeOutInterval = setInterval(function() {
+                if (opacity > 0) {
+                    opacity -= 0.05;
+                    description.style.opacity = opacity;
+                } else {
+                    description.style.display = 'none';
+                    clearInterval(fadeOutInterval);
+                }
+            }, 50); // Всеки 50 милисекунди намаляваме стойността на opacity
+        }
+    });
+</script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">

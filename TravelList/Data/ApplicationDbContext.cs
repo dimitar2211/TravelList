@@ -7,4 +7,5 @@ public class ApplicationDbContext : DbContext
     { }
 
     public DbSet<Destination> Destinations { get; set; }
+    public DbSet<Airline> Airlines { get; set; }
 }

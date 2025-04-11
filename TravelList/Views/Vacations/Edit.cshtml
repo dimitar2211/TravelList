@@ -1,4 +1,4 @@
-﻿@model Destination
+﻿@model TravelList.Models.Vacation
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,7 +6,7 @@
 
 <h1>Edit</h1>
 
-<h4>Destination</h4>
+<h4>Vacation</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,19 +14,24 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Continent" class="control-label"></label>
+                <input asp-for="Continent" class="form-control" />
+                <span asp-validation-for="Continent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TicketCost" class="control-label"></label>
+                <input asp-for="TicketCost" class="form-control" />
+                <span asp-validation-for="TicketCost" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Budget" class="control-label"></label>
                 <input asp-for="Budget" class="form-control" />
                 <span asp-validation-for="Budget" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Duration" class="control-label"></label>
-                <input asp-for="Duration" class="form-control" />
-                <span asp-validation-for="Duration" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

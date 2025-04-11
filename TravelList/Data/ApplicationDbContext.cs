@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TravelList.Models;
 
 public class ApplicationDbContext : DbContext
 {
@@ -6,6 +7,7 @@ public class ApplicationDbContext : DbContext
         : base(options)
     { }
 
-    public DbSet<Destination> Destinations { get; set; }
     public DbSet<Airline> Airlines { get; set; }
+    public DbSet<Vacation> Vacations { get; set; }
+
 }

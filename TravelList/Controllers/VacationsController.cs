@@ -5,25 +5,26 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TravelList.Models;
 
 namespace TravelList.Controllers
 {
-    public class DestinationsController : Controller
+    public class VacationsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public DestinationsController(ApplicationDbContext context)
+        public VacationsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Destinations
+        // GET: Vacations
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Destinations.ToListAsync());
+            return View(await _context.Vacations.ToListAsync());
         }
 
-        // GET: Destinations/Details/5
+        // GET: Vacations/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -31,39 +32,39 @@ namespace TravelList.Controllers
                 return NotFound();
             }
 
-            var destination = await _context.Destinations
+            var vacation = await _context.Vacations
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (destination == null)
+            if (vacation == null)
             {
                 return NotFound();
             }
 
-            return View(destination);
+            return View(vacation);
         }
 
-        // GET: Destinations/Create
+        // GET: Vacations/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Destinations/Create
+        // POST: Vacations/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Budget,Duration")] Destination destination)
+        public async Task<IActionResult> Create([Bind("Id,Continent,Country,TicketCost,Budget")] Vacation vacation)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(destination);
+                _context.Add(vacation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(destination);
+            return View(vacation);
         }
 
-        // GET: Destinations/Edit/5
+        // GET: Vacations/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -71,22 +72,22 @@ namespace TravelList.Controllers
                 return NotFound();
             }
 
-            var destination = await _context.Destinations.FindAsync(id);
-            if (destination == null)
+            var vacation = await _context.Vacations.FindAsync(id);
+            if (vacation == null)
             {
                 return NotFound();
             }
-            return View(destination);
+            return View(vacation);
         }
 
-        // POST: Destinations/Edit/5
+        // POST: Vacations/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Budget,Duration")] Destination destination)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Continent,Country,TicketCost,Budget")] Vacation vacation)
         {
-            if (id != destination.Id)
+            if (id != vacation.Id)
             {
                 return NotFound();
             }
@@ -95,12 +96,12 @@ namespace TravelList.Controllers
             {
                 try
                 {
-                    _context.Update(destination);
+                    _context.Update(vacation);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DestinationExists(destination.Id))
+                    if (!VacationExists(vacation.Id))
                     {
                         return NotFound();
                     }
@@ -111,10 +112,10 @@ namespace TravelList.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(destination);
+            return View(vacation);
         }
 
-        // GET: Destinations/Delete/5
+        // GET: Vacations/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -122,34 +123,34 @@ namespace TravelList.Controllers
                 return NotFound();
             }
 
-            var destination = await _context.Destinations
+            var vacation = await _context.Vacations
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (destination == null)
+            if (vacation == null)
             {
                 return NotFound();
             }
 
-            return View(destination);
+            return View(vacation);
         }
 
-        // POST: Destinations/Delete/5
+        // POST: Vacations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var destination = await _context.Destinations.FindAsync(id);
-            if (destination != null)
+            var vacation = await _context.Vacations.FindAsync(id);
+            if (vacation != null)
             {
-                _context.Destinations.Remove(destination);
+                _context.Vacations.Remove(vacation);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DestinationExists(int id)
+        private bool VacationExists(int id)
         {
-            return _context.Destinations.Any(e => e.Id == id);
+            return _context.Vacations.Any(e => e.Id == id);
         }
     }
 }

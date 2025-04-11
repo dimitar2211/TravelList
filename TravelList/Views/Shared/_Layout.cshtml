@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TravelList</title>
 
-    <!-- Включване на Bootstrap чрез CDN -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Ако имаш специфични стилове за сайта -->
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- Custom styles -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TravelList.styles.css" asp-append-version="true" />
 </head>
@@ -17,8 +23,8 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TravelList</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -32,7 +38,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Vacations" asp-action="Index">Plan Vacation</a>
                         </li>
-                        <!-- Зелен бутон за "Самолетни компании" -->
                         <li class="nav-item">
                             <a class="nav-link btn btn-success text-white" asp-area="" asp-controller="Airlines" asp-action="Index">
                                 ✈️ Самолетни компании
@@ -57,14 +62,17 @@
         </div>
     </footer>
 
-    <!-- Добавяне на jQuery и Bootstrap JS чрез CDN -->
+    <!-- jQuery and Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Ако имаш свои JavaScript файлове -->
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Custom scripts -->
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <!-- Секция за допълнителни скриптове, ако има такива -->
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

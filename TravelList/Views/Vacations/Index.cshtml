@@ -4,50 +4,99 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="mb-4">Plan Your Dream Vacation</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success mb-3">
+        <i class="bi bi-plus-circle"></i> Create New
+    </a>
 </p>
-<table class="table">
-    <thead>
+
+<table class="table table-hover table-bordered shadow-sm">
+    <thead class="table-success">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Continent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TicketCost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Budget)
-            </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.First().Continent)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Country)</th>
+            <th>@Html.DisplayNameFor(model => model.First().TicketCost)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Budget)</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Continent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Budget)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Continent)</td>
+                <td>@Html.DisplayFor(modelItem => item.Country)</td>
+                <td>@Html.DisplayFor(modelItem => item.TicketCost)</td>
+                <td>@Html.DisplayFor(modelItem => item.Budget)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+<!-- 🌍 MAP SECTION - Местим картата под таблицата -->
+<div class="mb-4">
+    <h2 class="text-success">🌍 World Vacation Map</h2>
+    <div id="worldMap" style="height: 400px; border-radius: 10px; border: 2px solid #198754;"></div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Initialize map
+        var map = L.map('worldMap').setView([20, 0], 2);
+
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Get vacation data from the model
+        const vacationData = [
+        @foreach (var item in Model)
+        {
+            @Html.Raw("{ Continent: '" + item.Continent + "' },")
+        }
+                ];
+
+        // Count the most visited continent
+        const continentCount = {};
+        vacationData.forEach(v => {
+            continentCount[v.Continent] = (continentCount[v.Continent] || 0) + 1;
+        });
+
+        const mostVisited = Object.entries(continentCount).sort((a, b) => b[1] - a[1])[0]?.[0];
+
+        // Coordinates for continents
+        const continentCoordinates = {
+            "Europe": [54, 15],
+            "Asia": [34, 100],
+            "Africa": [0, 20],
+            "North America": [45, -100],
+            "South America": [-15, -60],
+            "Australia": [-25, 135],
+            "Antarctica": [-75, 0]
+        };
+
+        // Highlight the most visited continent with a circle
+        if (mostVisited && continentCoordinates[mostVisited]) {
+            L.circle(continentCoordinates[mostVisited], {
+                color: 'green',
+                fillColor: '#28a745',
+                fillOpacity: 0.6,
+                radius: 1500000
+            }).addTo(map).bindPopup("Most Visited Area: " + mostVisited);
+        }
+    </script>
+}
+
+

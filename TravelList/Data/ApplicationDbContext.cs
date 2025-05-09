@@ -9,5 +9,6 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Airline> Airlines { get; set; }
     public DbSet<Vacation> Vacations { get; set; }
+    public DbSet<Message> Messages { get; set; }
 
 }
